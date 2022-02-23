@@ -1,5 +1,18 @@
 module MPGenbb
 
-# Write your package code here.
+using Random
+using Distributions
+using Documenter
+using DataFrames
 
-end
+include("MomentumFuncs.jl")
+export getpMag, getpx, getpy, getpz
+
+include("StringFuncs.jl")
+export getParticleString, getHeaderString, getEventString
+
+include("SamplingFuncs.jl")
+export sampleEnergy, samplePhi, sampleTheta, sample_energies, solvequadratic
+
+
+end # module MPgenbb
