@@ -6,7 +6,10 @@ using Documenter
 using DataFrames
 
 include("MomentumFuncs.jl")
-export getpMag, getpx, getpy, getpz
+export  getpMag, 
+        getpx, 
+        getpy, 
+        getpz
 
 include("StringFuncs.jl")
 export getParticleString, getHeaderString, getEventString
