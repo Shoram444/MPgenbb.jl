@@ -12,7 +12,7 @@ include("StringFuncs.jl")
 export getParticleString, getHeaderString, getEventString
 
 include("SamplingFuncs.jl")
-export sampleEnergy, samplePhi, sampleTheta, sample_energies, solvequadratic
+export sampleEnergy, samplePhi, sampleTheta, sample_energies
 
 
 end # module MPgenbb

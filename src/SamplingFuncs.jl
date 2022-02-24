@@ -76,3 +76,8 @@ function sample_energies(df::DataFrame, thickness = 0.001)
     end
     
 end
+
+function solvequadratic(a, b, c)
+    d  = sqrt(b^2 - 4*a*c)
+    return (-b - d) / (2*a), (-b + d) / (2*a)
+end
