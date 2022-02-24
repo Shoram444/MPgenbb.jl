@@ -17,7 +17,7 @@ function get_particle_string(PART_TYPE, T, MASS, ϕ, θ)
     py   = get_py(pMag, ϕ, θ)
     pz   = get_pz(pMag,  θ)
 
-    return string(PART_TYPE," ",px," ",py," ",pz" 0")
+    return string(PART_TYPE," ",px," ",py," ",pz," 0")
 end
 
 """
