@@ -1,7 +1,7 @@
 """
-    getParticleString(PART_TYPE, T, MASS, ϕ, θ)
+get_particle_string(PART_TYPE, T, MASS, ϕ, θ)
 
-Description of getParticleString
+Description of get_particle_string
 --------------------------------
 Returns one-line string for particle in form "TYPE pₓ p𝔂 p𝐳 0"
 
@@ -11,7 +11,7 @@ example:
 
 "3 1.0 1.0 1.0 0"
 """
-function getParticleString(PART_TYPE, T, MASS, ϕ, θ)
+function get_particle_string(PART_TYPE, T, MASS, ϕ, θ)
     pMag = getpMag(T, MASS)
     px   = getpx(pMag, ϕ, θ)
     py   = getpy(pMag, ϕ, θ)
@@ -21,9 +21,9 @@ function getParticleString(PART_TYPE, T, MASS, ϕ, θ)
 end
 
 """
-    getHeaderString(ID)
+    get_header_string(ID)
 
-Description of getHeaderString
+Description of get_header_string
 ------------------------------
 Returns one-line string for header in form "ID 0 2" (2 stands for number of particles)
 
@@ -33,22 +33,22 @@ example:
 
 "0 0 2"
 """
-function getHeaderString(ID)
+function get_header_string(ID)
     return string(ID)*" 0 2"
 end
 
 
 """
-    getEventString(ID, PART_TYPE, T, MASS, ϕ, θ)
+get_event_string(ID, PART_TYPE, T, MASS, ϕ, θ)
 
-Description of getEventString
+Description of get_event_string
 ------------------------------
 Returns one event, separated at the end by #.
 """
-function getEventString(ID, PART_TYPE, T, MASS, ϕ, θ)
-    sHeader= getHeaderString(ID)
-    sPart1 = getParticleString(PART_TYPE, T[1], MASS, ϕ[1], θ[1])
-    sPart2 = getParticleString(PART_TYPE, T[2], MASS, ϕ[2], θ[2])
+function get_event_string(ID, PART_TYPE, T, MASS, ϕ, θ)
+    sHeader= get_header_string(ID)
+    sPart1 = get_particle_string(PART_TYPE, T[1], MASS, ϕ[1], θ[1])
+    sPart2 = get_particle_string(PART_TYPE, T[2], MASS, ϕ[2], θ[2])
 
     return sHeader*"\n"*sPart1*"\n"*sPart2*"\n#\n"
 end

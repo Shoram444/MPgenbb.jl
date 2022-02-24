@@ -1,20 +1,20 @@
 
 """
-    samplePhi()
+    sample_phi()
 
-Description of samplePhi
+Description of sample_phi
 ------------------------------
 Returns (ϕ₁, ϕ₂) tuple in radians Uniformly distributed. See Distributions.Uniform
 
 """
-function samplePhi()
+function sample_phi()
     return 2*π*rand(Distributions.Uniform(),2)
 end
 
 """
-    sampleTheta()
+    sample_theta()
 
-Description of sampleTheta
+Description of sample_theta
 ------------------------------
 Returns (θ₁, θ₂) tuple in radians Uniformly distributed. See Distributions.Uniform
 
@@ -22,7 +22,7 @@ Sampling equation is:
 ``` acos(1 - 2*U) ; where U is uniform random number; U ∈ (0,1). ```
 
 """
-function sampleTheta()
+function sample_theta()
     return acos.(1 .-2*rand(Distributions.Uniform(),2))
 end
 
@@ -52,7 +52,7 @@ function sample_energies(df::DataFrame, thickness = 0.001)
     
     if gamma > maximum(df.cdf) || gamma < minimum(df.cdf) # sanity check that gamma isnt some crazy number
         @show "sanity check"
-        sample_energies1(df)
+        sample_energies(df)
         
     end
     
@@ -66,7 +66,7 @@ function sample_energies(df::DataFrame, thickness = 0.001)
     b = df_Pᵢ.b * thickness
     c = Pᵢ₋₁ - gamma - a*df_Pᵢ.minE^2 - b*df_Pᵢ.minE
     
-    x1, x2 = solvequadratic(a, b, c)
+    x1, x2 = solve_quadratic(a, b, c)
     
     if (df_Pᵢ.minE < x1) && (df_Pᵢ.maxE) > x1
         return rand(Uniform(df_Pᵢ.E1, df_Pᵢ.E1+thickness)), x1  #E1 is sampled as uniform number between steps, 
@@ -77,7 +77,7 @@ function sample_energies(df::DataFrame, thickness = 0.001)
     
 end
 
-function solvequadratic(a, b, c)
+function solve_quadratic(a, b, c)
     d  = sqrt(b^2 - 4*a*c)
     return (-b - d) / (2*a), (-b + d) / (2*a)
 end
