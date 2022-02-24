@@ -12,12 +12,12 @@ example:
 "3 1.0 1.0 1.0 0"
 """
 function get_particle_string(PART_TYPE, T, MASS, ϕ, θ)
-    pMag = getpMag(T, MASS)
-    px   = getpx(pMag, ϕ, θ)
-    py   = getpy(pMag, ϕ, θ)
-    pz   = getpz(pMag,  θ)
+    pMag = get_pMag(T, MASS)
+    px   = get_px(pMag, ϕ, θ)
+    py   = get_py(pMag, ϕ, θ)
+    pz   = get_pz(pMag,  θ)
 
-    return string(PART_TYPE)*" "*string(px)*" "*string(py)*" "*string(pz)*" 0"
+    return string(PART_TYPE," ",px," ",py," ",pz" 0")
 end
 
 """
@@ -34,7 +34,7 @@ example:
 "0 0 2"
 """
 function get_header_string(ID)
-    return string(ID)*" 0 2"
+    return string(ID," 0 2")
 end
 
 
