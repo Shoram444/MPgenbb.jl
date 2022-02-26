@@ -23,18 +23,14 @@ Sampling equation is:
 
 """
 function sample_theta()
-    γ = rand(Uniform())
-    
     θ1 = 2*π*rand(Uniform())
 
-    a = 1. #fix correct values here and check what x1,x2 give as values! 
-    b = 2.
-    c = 3 - 4*γ
-    @show x1,x2 = sample_quadratic(a,b,c)
-
-    
-
-    return acos.(1 .-2*rand(Distributions.Uniform(),2))
+    a = 1. 
+    b = -2.
+    c = -3 + 4*rand(Uniform())
+    θdif = solve_quadratic(a,b,c)[1]  # we only use solution to quadratic where (-b - sqrt(D))/2a
+                                      # θdif is the angle between electrons, it is sampled by iCDF method from pdf = 1 - cos(θ) distribuiton
+    return θ1, θdif + θ1
 end
 
 
