@@ -12,10 +12,14 @@ export  get_pMag,
         get_pz
 
 include("StringFuncs.jl")
-export get_particle_string, get_header_string, get_event_string
+export get_particle_string, 
+	  get_header_string, 
+	  get_event_string
 
 include("SamplingFuncs.jl")
-export sample_phi, sample_theta, sample_energies
+export sample_phi, 
+       sample_theta, 
+       sample_energies
 
 
 end # module MPgenbb

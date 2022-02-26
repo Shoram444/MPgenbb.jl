@@ -4,11 +4,11 @@
 
 Description of sample_phi
 ------------------------------
-Returns (ϕ₁, ϕ₂) tuple in radians Uniformly distributed. See Distributions.Uniform
+Returns (ϕ₁, ϕ₂) tuple in radians Uniformly distributed. Phi is the polar angle. See Distributions.Uniform
 
 """
 function sample_phi()
-    return 2*π*rand(Distributions.Uniform(),2)
+    return acos.(1 .- 2 .* rand(Uniform(),2))
 end
 
 """
@@ -23,6 +23,17 @@ Sampling equation is:
 
 """
 function sample_theta()
+    γ = rand(Uniform())
+    
+    θ1 = 2*π*rand(Uniform())
+
+    a = 1. #fix correct values here and check what x1,x2 give as values! 
+    b = 2.
+    c = 3 - 4*γ
+    @show x1,x2 = sample_quadratic(a,b,c)
+
+    
+
     return acos.(1 .-2*rand(Distributions.Uniform(),2))
 end
 
