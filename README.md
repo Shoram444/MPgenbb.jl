@@ -18,14 +18,13 @@
     1. Header line which has fields: ``ID Time nP`` (where ID is event ID from 0 to N; Time is starting time; nP is the number of particles within the event)
     2. Particle line with fields: ``Type px py pz dt`` (where particle ``Type`` is 1- gamma, 2- positron, 3-electron; ``px py pz`` are relativistic momentum components; ``dt`` is time difference)
 
-An example event - 2 positrons, starting at ``Time`` = 0, with ``dt`` = 0 and momenta ``px1 = py1 = pz1 = 1, px2 = py2 = pz2 = 1`` - is generated as:
+An example event - 2 positrons, starting at ``Time = 0``, with ``dt = 0`` and momenta ``px1 = py1 = pz1 = 1, px2 = py2 = pz2 = 1`` - is generated as:
 <br>
-``
-0 0 2 
-2 1 1 1 0
-2 2 2 2 0
-#
-``
+``0 0 2 ``
+``2 1 1 1 0``
+``2 2 2 2 0``
+``#``
+
 
 
 ```julia
