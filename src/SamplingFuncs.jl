@@ -32,16 +32,16 @@ function sample_theta()
     a = 1. 
     b = -2.
     c = -3 + 4*rand(Uniform())
-    θdif = solve_quadratic(a,b,c)[1]  # we only use solution to quadratic where (-b - sqrt(D))/2a
-                                      # θdif is the angle between electrons, it is sampled by iCDF method from 1 - cos(θ) distribuiton
-    if (0.0 <= (θdif + θ1) <= 2π)       # return θ1, θ2 = θdif + θ1 if the angle is between 0 and 2π
-        return θ1, θdif + θ1
+    cosθdif = solve_quadratic(a,b,c)[1]  # we only use solution to quadratic where (-b - sqrt(D))/2a
+                                      # cosθdif is cosine of the angle between the electrons, it is sampled by iCDF method from 1 - cos(θ) distribuiton
+    if (0.0 <= (cosθdif + θ1) <= 2π)       # return θ1, θ2 = cosθdif + θ1 if the angle is between 0 and 2π
+        return θ1, acos(cosθdif) + θ1
 
-    elseif (θdif + θ1 < 0.0)         # if θ2 is less than 0, add 2π to go back to the range 0,2π
-        return θ1, θdif + θ1 + 2π
+    elseif (cosθdif + θ1 < 0.0)         # if θ2 is less than 0, add 2π to go back to the range 0,2π
+        return θ1, acos(cosθdif) + θ1 + 2π
 
     else
-        return θ1, θdif + θ1 - 2π     # if θ2 is more than 2π, subtract 2π to go back to the range 0,2π
+        return θ1, acos(cosθdif) + θ1 - 2π     # if θ2 is more than 2π, subtract 2π to go back to the range 0,2π
     end
 end
 
