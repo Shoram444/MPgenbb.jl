@@ -36,7 +36,7 @@ function sample_theta()
     if (0.0 <= θdif + θ1 <= 2π)       # return θ1, θ2 = θdif + θ1 if the angle is between 0 and 2π
         return θ1, θdif + θ1
 
-    else if (0.0 > θdif + θ1)         # if θ2 is less than 0, add 2π to go back to the range 0,2π
+    elseif (0.0 > θdif + θ1)         # if θ2 is less than 0, add 2π to go back to the range 0,2π
         return θ1, θdif + θ1 + 2π
 
     else
