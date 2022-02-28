@@ -28,7 +28,7 @@ Input arguments are:
 + θ    : zenith angle in [rad]
 """
 function get_px(pMag, ϕ, θ)
-    return pMag*cos(ϕ)*sin(θ)
+    return pMag*cos(θ)*sin(ϕ)
 end
 
 """
@@ -61,5 +61,5 @@ Input arguments are:
 + θ    : zenith angle in [rad]
 """
 function get_pz(pMag, θ)
-    return pMag*cos(θ)
+    return pMag*cos(ϕ)
 end
