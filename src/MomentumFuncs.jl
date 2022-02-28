@@ -60,6 +60,6 @@ Input arguments are:
 + pMag : momentum magnitude in [MeV]
 + θ    : zenith angle in [rad]
 """
-function get_pz(pMag, θ)
+function get_pz(pMag, ϕ)
     return pMag*cos(ϕ)
 end
