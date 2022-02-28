@@ -20,9 +20,9 @@
 
 An example event - 2 positrons, starting at ``Time = 0``, with ``dt = 0`` and momenta ``px1 = py1 = pz1 = 1, px2 = py2 = pz2 = 1`` - is generated as:
 <br>
-``0 0 2 ``
-``2 1 1 1 0``
-``2 2 2 2 0``
+``0 0 2 `` <br>
+``2 1 1 1 0`` <br>
+``2 2 2 2 0`` <br>
 ``#``
 
 
