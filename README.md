@@ -9,7 +9,7 @@
 ### MPGenbb generator is a module used for generating custom .genbb files, which serve as an input for custom generated events into Falaise simulation module of SuperNEMO collaboration. 
 <br>
 
-#### The following example shows how to use the module to simply generate a file with momenta of each particle generated using a ``2\\nu\\beta\\beta`` decay spectrum provided by R. Dvornicky rebinned using MPRebinSpectra module (<a href="https://github.com/Shoram444/MPRebinSpectra.jl">MPRebinSpectra.jl</a>)
+#### The following example shows how to use the module to simply generate a file with momenta of each particle generated using a $2\\nu\\beta\\beta$ decay spectrum provided by R. Dvornicky rebinned using MPRebinSpectra module (<a href="https://github.com/Shoram444/MPRebinSpectra.jl">MPRebinSpectra.jl</a>)
 
 
 ##### The structure of .genbb files is as follows: 
