@@ -8,7 +8,8 @@ Returns (ϕ₁, ϕ₂) tuple in radians Uniformly distributed. Phi is the polar 
 
 """
 function sample_phi()
-    return acos.(1 .- 2 .* rand(Uniform(),2))
+    ϕ1, ϕ2 = acos.(1 .- 2 .* rand(Uniform(),2))
+    return ϕ1, ϕ2
 end
 
 """
@@ -33,10 +34,10 @@ function sample_theta()
     c = -3 + 4*rand(Uniform())
     θdif = solve_quadratic(a,b,c)[1]  # we only use solution to quadratic where (-b - sqrt(D))/2a
                                       # θdif is the angle between electrons, it is sampled by iCDF method from 1 - cos(θ) distribuiton
-    if (0.0 <= θdif + θ1 <= 2π)       # return θ1, θ2 = θdif + θ1 if the angle is between 0 and 2π
+    if (0.0 <= (θdif + θ1) <= 2π)       # return θ1, θ2 = θdif + θ1 if the angle is between 0 and 2π
         return θ1, θdif + θ1
 
-    elseif (0.0 > θdif + θ1)         # if θ2 is less than 0, add 2π to go back to the range 0,2π
+    elseif (θdif + θ1 < 0.0)         # if θ2 is less than 0, add 2π to go back to the range 0,2π
         return θ1, θdif + θ1 + 2π
 
     else
