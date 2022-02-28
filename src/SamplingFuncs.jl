@@ -16,10 +16,13 @@ end
 
 Description of sample_theta
 ------------------------------
-Returns (θ₁, θ₂) tuple in radians Uniformly distributed. See Distributions.Uniform
+Returns (θ₁, θ₂) tuple in radians Uniformly distributed. Theta is the azimuthal angle. See Distributions.Uniform
 
 Sampling equation is:
-``` acos(1 - 2*U) ; where U is uniform random number; U ∈ (0,1). ```
+    + First θ1 is sampled uniformly from 2π uniform pdf.
+    + Second angle θdif (the angle between the two electrons) is sampled from pdf = 0.5 - 0.5x. This pdf represents the 1 - cos(θ) angular distribution. 
+        It is sampled through inverse CDF method. 
+    + θ2 is determined as θ2 = θdif + θ1.
 
 """
 function sample_theta()
@@ -29,7 +32,7 @@ function sample_theta()
     b = -2.
     c = -3 + 4*rand(Uniform())
     θdif = solve_quadratic(a,b,c)[1]  # we only use solution to quadratic where (-b - sqrt(D))/2a
-                                      # θdif is the angle between electrons, it is sampled by iCDF method from pdf = 1 - cos(θ) distribuiton
+                                      # θdif is the angle between electrons, it is sampled by iCDF method from 1 - cos(θ) distribuiton
     return θ1, θdif + θ1
 end
 
