@@ -80,6 +80,7 @@ NEVENTS          = 100  # how many events should be created
 
 
 
+### To save the file use a simple for loop, at each step generate electron energies ``T`` and angle ``ϕ, θ``. Then generate ``get_event_string``. And save.
 
 ```julia
 open(FILENAME, "w") do file
