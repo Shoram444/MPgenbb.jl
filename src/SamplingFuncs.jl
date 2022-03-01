@@ -1,23 +1,22 @@
 
 """
+sample_theta()
+
+Description of sample_theta
+------------------------------
+Returns θ in radians Uniformly distributed. θ is the polar angle. See Distributions.Uniform
+
+"""
+function sample_theta()
+    return acos(1 - 2 * rand(Uniform())) ## polar angle in radians
+end
+
+"""
     sample_phi()
 
 Description of sample_phi
 ------------------------------
-Returns (ϕ₁, ϕ₂) tuple in radians Uniformly distributed. Phi is the polar angle. See Distributions.Uniform
-
-"""
-function sample_phi()
-    ϕ1, ϕ2 = acos.(1 .- 2 .* rand(Uniform(),2))   # in radians
-    return ϕ1, ϕ2
-end
-
-"""
-    sample_theta()
-
-Description of sample_theta
-------------------------------
-Returns (θ₁, θ₂) tuple in radians Uniformly distributed. Theta is the azimuthal angle. See Distributions.Uniform
+Returns (θ₁, θ₂) tuple in radians Uniformly distributed. phi is the azimuthal angle. See Distributions.Uniform
 
 Sampling equation is:
     + First θ1 is sampled uniformly from 2π uniform pdf.
@@ -26,23 +25,25 @@ Sampling equation is:
     + θ2 is determined as θ2 = θdif + θ1.
 
 """
-function sample_theta()
-    θ1 = 2*π*rand(Uniform())
+function sample_phi()
+    # ϕ = 2*π*rand(Uniform())
 
-    a = 1. 
-    b = -2.
-    c = -3 + 4*rand(Uniform())
-    cosθdif = solve_quadratic(a,b,c)[1]     # we only use solution to quadratic where (-b - sqrt(D))/2a
-                                            # cosθdif is cosine of the angle between the electrons, it is sampled by iCDF method from 1 - cos(θ) distribuiton
-    if (0.0 <= (cosθdif + θ1) <= 2π)        # return θ1, θ2 = cosθdif + θ1 if the angle is between 0 and 2π
-        return θ1, acos(cosθdif) + θ1
+    # a = 1. 
+    # b = -2.
+    # c = -3 + 4*rand(Uniform())
+    # cosθdif = solve_quadratic(a,b,c)[1]     # we only use solution to quadratic where (-b - sqrt(D))/2a
+    #                                         # cosθdif is cosine of the angle between the electrons, it is sampled by iCDF method from 1 - cos(θ) distribuiton
+    # if (0.0 <= (cosθdif + θ1) <= 2π)        # return θ1, θ2 = cosθdif + θ1 if the angle is between 0 and 2π
+    #     return θ1, acos(cosθdif) + θ1
 
-    elseif (cosθdif + θ1 < 0.0)         # if θ2 is less than 0, add 2π to go back to the range 0,2π
-        return θ1, acos(cosθdif) + θ1 + 2π
+    # elseif (cosθdif + θ1 < 0.0)         # if θ2 is less than 0, add 2π to go back to the range 0,2π
+    #     return θ1, acos(cosθdif) + θ1 + 2π
 
-    else
-        return θ1, acos(cosθdif) + θ1 - 2π     # if θ2 is more than 2π, subtract 2π to go back to the range 0,2π
-    end
+    # else
+    #     return θ1, acos(cosθdif) + θ1 - 2π     # if θ2 is more than 2π, subtract 2π to go back to the range 0,2π
+    # end
+
+    return 2*π*rand(Uniform()) ## azimuthal angle in radians
 end
 
 

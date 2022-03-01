@@ -25,10 +25,10 @@ Computes x-component of the momentum as:
 Input arguments are:
 + pMag : momentum magnitude in [MeV]
 + ϕ    : azimuth angle in [rad]
-+ θ    : zenith angle in [rad]
++ θ    : polar angle in [rad]
 """
 function get_px(pMag, ϕ, θ)
-    return pMag*cos(θ)*sin(ϕ)
+    return pMag*cos(ϕ)*sin(θ)
 end
 
 """
@@ -42,14 +42,14 @@ Computes y-component of the momentum as:
 Input arguments are:
 + pMag : momentum magnitude in [MeV]
 + ϕ    : azimuth angle in [rad]
-+ θ    : zenith angle in [rad]
++ θ    : polar angle in [rad]
 """
 function get_py(pMag, ϕ, θ)
     return pMag*sin(ϕ)*sin(θ)
 end
 
 """
-    get_pz(pMag, ϕ, θ)
+    get_pz(pMag, θ)
 
 Description of get_pz
 --------------------------
@@ -58,8 +58,8 @@ Computes z-component of the momentum as:
 
 Input arguments are:
 + pMag : momentum magnitude in [MeV]
-+ θ    : zenith angle in [rad]
++ θ    : polar angle in [rad]
 """
-function get_pz(pMag, ϕ)
-    return pMag*cos(ϕ)
+function get_pz(pMag, θ)
+    return pMag*cos(θ)
 end
