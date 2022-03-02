@@ -163,7 +163,7 @@ function get_second_vector(T::Real, MASS::Real, p1::DataFrameRow)
     
     p2Mag = get_pMag(T, MASS)   
     θ2 = acos(p2[3]/p2Mag)
-    ϕ2 = atan(p2[2]/p2[1])
+    ϕ2 = atan(p2[2],p2[1])
 
     if (p2[1] == NaN)
         get_second_vector(T, MASS, p1)
@@ -183,7 +183,7 @@ function get_second_vector(T::Real, MASS::Real, p1::Vector{<:Real})
     
     p2Mag = get_pMag(T, MASS)   
     θ2 = acos(p2[3]/p2Mag)
-    ϕ2 = atan(p2[2]/p2[1])
+    ϕ2 = atan(p2[2],p2[1])
     
     if (p2[1] == NaN)
         get_second_vector(T, MASS, p1)
@@ -203,7 +203,7 @@ function get_second_vector(T::Real, MASS::Real, p1::DataFrameRow, θdif::Real)
     
     p2Mag = get_pMag(T, MASS)
     θ2 = acos(p2[3]/p2Mag)
-    ϕ2 = atan(p2[2]/p2[1])
+    ϕ2 = atan(p2[2],p2[1])
     
     if (p2[1] == NaN)
         get_second_vector(T, MASS, p1, θdif)
@@ -223,7 +223,7 @@ function get_second_vector(T::Real, MASS::Real, p1::Vector{<:Real},  θdif::Real
     
     p2Mag = get_pMag(T, MASS)   
     θ2 = acos(p2[3]/p2Mag)
-    ϕ2 = atan(p2[2]/p2[1])
+    ϕ2 = atan(p2[2],p2[1])  
 
         
     if (p2[1] == NaN)
