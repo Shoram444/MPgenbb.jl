@@ -165,7 +165,7 @@ function get_second_vector(T::Real, MASS::Real, p1::DataFrameRow)
     θ2 = acos(p2[3]/p2Mag)
     ϕ2 = atan(p2[2]/p2[1])
     
-    return [ p2Mag p2[1] p2[2] p2[3] θ2 ϕ2 ]
+    return [ p2Mag, p2[1], p2[2], p2[3], θ2, ϕ2 ]
 end
 
 function get_second_vector(T::Real, MASS::Real, p1::Vector{<:Real})
@@ -181,7 +181,7 @@ function get_second_vector(T::Real, MASS::Real, p1::Vector{<:Real})
     θ2 = acos(p2[3]/p2Mag)
     ϕ2 = atan(p2[2]/p2[1])
     
-    return [ p2Mag p2[1] p2[2] p2[3] θ2 ϕ2 ]
+    return [ p2Mag, p2[1], p2[2], p2[3], θ2, ϕ2 ]
 end
 
 function get_second_vector(T::Real, MASS::Real, p1::DataFrameRow, θdif::Real)
@@ -197,7 +197,7 @@ function get_second_vector(T::Real, MASS::Real, p1::DataFrameRow, θdif::Real)
     θ2 = acos(p2[3]/p2Mag)
     ϕ2 = atan(p2[2]/p2[1])
     
-    return [ p2Mag p2[1] p2[2] p2[3] θ2 ϕ2 ]
+    return [ p2Mag, p2[1], p2[2], p2[3], θ2, ϕ2 ]
 end
 
 function get_second_vector(T::Real, MASS::Real, p1::Vector{<:Real},  θdif::Real)
@@ -213,5 +213,5 @@ function get_second_vector(T::Real, MASS::Real, p1::Vector{<:Real},  θdif::Real
     θ2 = acos(p2[3]/p2Mag)
     ϕ2 = atan(p2[2]/p2[1])
     
-    return [ p2Mag p2[1] p2[2] p2[3] θ2 ϕ2 ]
+    return [ p2Mag, p2[1], p2[2], p2[3], θ2, ϕ2 ]
 end
