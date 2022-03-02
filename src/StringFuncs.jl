@@ -40,14 +40,14 @@ end
 
 
 """
-```get_event_string(ID, PART_TYPE, T, MASS, p1::Vector{<:Real}, p2::Vector{<:Real})```
-```get_event_string(ID, PART_TYPE, T, MASS, p1::DataFrameRow, p2::DataFrameRow)```
+```get_event_string(ID, PART_TYPE, p1::Vector{<:Real}, p2::Vector{<:Real})```
+```get_event_string(ID, PART_TYPE, p1::DataFrameRow, p2::DataFrameRow)```
 
 Description of get_event_string
 ------------------------------
 Returns one event, separated at the end by #.
 """
-function get_event_string(ID, PART_TYPE, T, MASS, p1::Vector{<:Real}, p2::Vector{<:Real})
+function get_event_string(ID, PART_TYPE, p1::Vector{<:Real}, p2::Vector{<:Real})
     sHeader= get_header_string(ID)
     sPart1 = get_particle_string(PART_TYPE, p1)
     sPart2 = get_particle_string(PART_TYPE, p2)
@@ -55,7 +55,7 @@ function get_event_string(ID, PART_TYPE, T, MASS, p1::Vector{<:Real}, p2::Vector
     return sHeader*"\n"*sPart1*"\n"*sPart2*"\n#\n"
 end
 
-function get_event_string(ID, PART_TYPE, T, MASS, p1::DataFrameRow, p2::DataFrameRow)
+function get_event_string(ID, PART_TYPE, p1::DataFrameRow, p2::DataFrameRow)
     sHeader= get_header_string(ID)
     sPart1 = get_particle_string(PART_TYPE, p1)
     sPart2 = get_particle_string(PART_TYPE, p2)
