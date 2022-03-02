@@ -16,34 +16,39 @@ end
 
 Description of sample_phi
 ------------------------------
-Returns (θ₁, θ₂) tuple in radians Uniformly distributed. phi is the azimuthal angle. See Distributions.Uniform
+Returns ϕ in radians Uniformly distributed. phi is the azimuthal angle. See Distributions.Uniform
 
 Sampling equation is:
     + First θ1 is sampled uniformly from 2π uniform pdf.
     + Second angle θdif (the angle between the two electrons) is sampled from pdf = 0.5 - 0.5x. This pdf represents the 1 - cos(θ) angular distribution. 
-        It is sampled through inverse CDF method. Integrating pdf and finding the inverse function we get `` x = 1 - 2\\sqrt{1 - \\gamma}``
+        It is sampled through inverse CDF method. Integrating pdf and finding the inverse function we get ``` x = 1 - 2\\sqrt{1 - \\gamma}```
     + θ2 is determined as θ2 = θdif + θ1.
 
 """
 function sample_phi()
-    # ϕ = 2*π*rand(Uniform())
-
-    # a = 1. 
-    # b = -2.
-    # c = -3 + 4*rand(Uniform())
-    # cosθdif = solve_quadratic(a,b,c)[1]     # we only use solution to quadratic where (-b - sqrt(D))/2a
-    #                                         # cosθdif is cosine of the angle between the electrons, it is sampled by iCDF method from 1 - cos(θ) distribuiton
-    # if (0.0 <= (cosθdif + θ1) <= 2π)        # return θ1, θ2 = cosθdif + θ1 if the angle is between 0 and 2π
-    #     return θ1, acos(cosθdif) + θ1
-
-    # elseif (cosθdif + θ1 < 0.0)         # if θ2 is less than 0, add 2π to go back to the range 0,2π
-    #     return θ1, acos(cosθdif) + θ1 + 2π
-
-    # else
-    #     return θ1, acos(cosθdif) + θ1 - 2π     # if θ2 is more than 2π, subtract 2π to go back to the range 0,2π
-    # end
-
     return 2*π*rand(Uniform()) ## azimuthal angle in radians
+end
+
+
+"""
+    sample_theta_dif()
+
+Description of sample_theta_dif
+------------------------------
+Returns θdif in radians distrtibuted according to pdf = 0.5 - 0.5x (where x = cos(θdif)). θdif is the angle between the two electrons.
+
+Sampling equation is:
+    + θdif (the angle between the two electrons) is sampled from pdf = 0.5 - 0.5x. This pdf represents the 1 - cos(θ) angular distribution. 
+        It is sampled through inverse CDF method. Integrating pdf and finding the inverse function we get ``` x = 1 - 2\\sqrt{1 - \\gamma}```
+    + returned angle is the acos(x)
+
+"""
+function sample_theta_dif()
+    a = 1. 
+    b = -2.
+    c = -3 + 4*rand(Uniform())
+    cosθdif = solve_quadratic(a,b,c)[1]
+    return acos(cosθdif)
 end
 
 
@@ -101,3 +106,4 @@ function solve_quadratic(a, b, c)
     d  = sqrt(b^2 - 4*a*c)
     return (-b - d) / (2*a), (-b + d) / (2*a)
 end
+
