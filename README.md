@@ -17,6 +17,8 @@ An example event - 2 positrons, starting at ``Time = 0``, with ``dt = 0`` and mo
 ``2 2 2 2 0`` <br>
 ``#``
 
+#### Docstrings for individual functions are found in ``/src``.
+
 
 
 ```julia
