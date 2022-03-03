@@ -1,11 +1,3 @@
-# MPGenbb
-
-[![Build Status](https://travis-ci.com/Shoram444/MPGenbb.jl.svg?branch=main)](https://travis-ci.com/Shoram444/MPGenbb.jl)
-[![Build Status](https://ci.appveyor.com/api/projects/status/github/Shoram444/MPGenbb.jl?svg=true)](https://ci.appveyor.com/project/Shoram444/MPGenbb-jl)
-[![Coverage](https://codecov.io/gh/Shoram444/MPGenbb.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/Shoram444/MPGenbb.jl)
-[![Coverage](https://coveralls.io/repos/github/Shoram444/MPGenbb.jl/badge.svg?branch=main)](https://coveralls.io/github/Shoram444/MPGenbb.jl?branch=main)
-
-
 ### MPGenbb generator is a module used for generating custom .genbb files, which serve as an input for custom generated events into Falaise simulation module of SuperNEMO collaboration. 
 <br>
 
@@ -54,17 +46,17 @@ df = CSV.File(inFile) |> DataFrame
 
 
 
-<div class="data-frame"><p>608,481 rows × 8 columns</p><table class="data-frame"><thead><tr><th></th><th>E1</th><th>minE</th><th>maxE</th><th>minG</th><th>maxG</th><th>a</th><th>b</th><th>cdf</th></tr><tr><th></th><th title="Float64">Float64</th><th title="Float64">Float64</th><th title="Float64">Float64</th><th title="Float64">Float64</th><th title="Float64">Float64</th><th title="Float64">Float64</th><th title="Float64">Float64</th><th title="Float64">Float64</th></tr></thead><tbody><tr><th>1</th><td>0.00093</td><td>0.00093</td><td>0.01493</td><td>0.402172</td><td>0.4122</td><td>0.71628</td><td>0.401506</td><td>5.70061e-6</td></tr><tr><th>2</th><td>0.00093</td><td>0.01493</td><td>0.02693</td><td>0.4122</td><td>0.42152</td><td>0.776611</td><td>0.400606</td><td>1.07029e-5</td></tr><tr><th>3</th><td>0.00093</td><td>0.02693</td><td>0.04093</td><td>0.42152</td><td>0.433781</td><td>0.87581</td><td>0.397934</td><td>1.669e-5</td></tr><tr><th>4</th><td>0.00093</td><td>0.04093</td><td>0.05893</td><td>0.433781</td><td>0.45062</td><td>0.935488</td><td>0.395491</td><td>2.46496e-5</td></tr><tr><th>5</th><td>0.00093</td><td>0.05893</td><td>0.10993</td><td>0.45062</td><td>0.498454</td><td>0.937931</td><td>0.395348</td><td>4.8851e-5</td></tr><tr><th>&vellip;</th><td>&vellip;</td><td>&vellip;</td><td>&vellip;</td><td>&vellip;</td><td>&vellip;</td><td>&vellip;</td><td>&vellip;</td><td>&vellip;</td></tr></tbody></table></div>
+<div class="data-frame"><p>614,474 rows × 8 columns</p><table class="data-frame"><thead><tr><th></th><th>E1</th><th>minE</th><th>maxE</th><th>minG</th><th>maxG</th><th>a</th><th>b</th><th>cdf</th></tr><tr><th></th><th title="Float64">Float64</th><th title="Float64">Float64</th><th title="Float64">Float64</th><th title="Float64">Float64</th><th title="Float64">Float64</th><th title="Float64">Float64</th><th title="Float64">Float64</th><th title="Float64">Float64</th></tr></thead><tbody><tr><th>1</th><td>0.00093</td><td>0.0</td><td>0.00093</td><td>0.0</td><td>0.402019</td><td>432.278</td><td>0.0</td><td>1.86939e-7</td></tr><tr><th>2</th><td>0.00093</td><td>0.00093</td><td>0.01493</td><td>0.402019</td><td>0.412043</td><td>0.716006</td><td>0.401353</td><td>5.88537e-6</td></tr><tr><th>3</th><td>0.00093</td><td>0.01493</td><td>0.02693</td><td>0.412043</td><td>0.421358</td><td>0.776314</td><td>0.400452</td><td>1.08858e-5</td></tr><tr><th>4</th><td>0.00093</td><td>0.02693</td><td>0.04093</td><td>0.421358</td><td>0.433615</td><td>0.875475</td><td>0.397782</td><td>1.68706e-5</td></tr><tr><th>5</th><td>0.00093</td><td>0.04093</td><td>0.05893</td><td>0.433615</td><td>0.450447</td><td>0.93513</td><td>0.39534</td><td>2.48272e-5</td></tr><tr><th>&vellip;</th><td>&vellip;</td><td>&vellip;</td><td>&vellip;</td><td>&vellip;</td><td>&vellip;</td><td>&vellip;</td><td>&vellip;</td><td>&vellip;</td></tr></tbody></table></div>
 
 
 
-### Initial conditions need to be set. 
+### Setting up initial conditions .
 
 
 ```julia
 const MASS        = 0.511 # particle mass in MeV/c²
 const PART_TYPE   = 3     # particle type: 1- gamma, 2-positron, 3-electron
-const FILENAME    = "input_module.genbb" # name of the output file
+const OUTFILE     = "input_module.genbb" # name of the output file
 const PROCESS     = "82Se 0νββ - Energy generated via SpectrumG0 - from R. Dvornicky";
 ```
 
@@ -80,10 +72,12 @@ NEVENTS          = 100  # how many events should be created
 
 
 
-### To save the file use a simple for loop, at each step generate electron energies ``T`` and angle ``ϕ, θ``. Then generate ``get_event_string``. And save.
+#### To save the file use a simple for loop, at each step generate electron energies ```T``` and momentum vectors ``p1`` and ``p2`` (where direction of ``p1`` is random unifrom in sphere and direction of ``p2`` is correlated to ``p1``). 
+#### Then generate ``get_event_string``. And save.
+
 
 ```julia
-open(FILENAME, "w") do file
+open(OUTFILE, "w") do file
     Threads.@threads for id in 0:NEVENTS-1
         T  = sample_energies(df)
 
