@@ -75,16 +75,6 @@ It takes roughly 100s to sample 1e5 energies.
 function sample_energies(df::DataFrame, thickness = 0.001)
     gamma = rand(Uniform(0.0, maximum(df.cdf))) # random uniform number from 0 to maximum of cdf column (it is not exactly 1.0 due to discrete numbers used in PC)
     
-    # while gamma > maximum(df.cdf)  # sanity check that gamma isnt some crazy number
-    #     @show "incorrectly sampled gamma"
-    #     @show gamma
-    #     @show minimum(df.cdf), maximum(df.cdf)
-
-    #     gamma = rand(Uniform(0.0, maximum(df.cdf)))
-    #     # sample_energies(df)
-    # end
-
-    
     r_id = findfirst(x -> x .>= gamma,df.cdf)
         
     r_id > 1 ? Pᵢ₋₁ = df[r_id-1, 8] : Pᵢ₋₁ = 0 
