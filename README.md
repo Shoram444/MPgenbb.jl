@@ -84,16 +84,17 @@ NEVENTS          = 100  # how many events should be created
 
 ```julia
 open(FILENAME, "w") do file
-    for id in 0:NEVENTS
-        T::Tuple{Float64, Float64} = sample_energies(df)
-        ϕ::Tuple{Float64, Float64} = sample_phi()
-        θ::Tuple{Float64, Float64} = sample_theta()
-        
+    Threads.@threads for id in 0:NEVENTS-1
+        T  = sample_energies(df)
+
+        p1 = get_first_vector(T[1], MASS)
+        p2 = get_second_vector(T[2], MASS, p1)
+
         if id%10_000 == 0 && id >1
-            @show "generated $id events!"
+            println("generated $id events!")
         end
 
-        write(file, get_event_string(id, PART_TYPE , T, MASS, ϕ, θ))
+        write(file, get_event_string(id, PART_TYPE , p1, p2))
     end
 end
 ```
