@@ -11,7 +11,7 @@ export  get_pMag,            # returns the magnitude of the momentum vector calc
         get_py,              # y-component of momentum vector
         get_pz,              # z-component of momentum vector
         get_first_vector,    # returns the momentum vector of the first electron (independent, direction generated uniformaly)
-        get_second_vector   # returns the momentum vector of the second electron (dependent on first, direction generated based on θdif distribuition)
+        get_second_vector    # returns the momentum vector of the second electron (dependent on first, direction generated based on θdif distribuition)
 
 
 include("StringFuncs.jl")
@@ -19,6 +19,7 @@ export get_particle_string,
        get_header_string, 
        get_event_string
 
+       
 include("SamplingFuncs.jl")
 export sample_phi,           # returns ϕ azimuthal angle uniformly
        sample_theta,         # returns θ polar angle uniformly
