@@ -94,3 +94,14 @@ open(OUTFILE, "w") do file
     end
 end
 ```
+
+
+```math
+
+ \begin{bmatrix}
+a_1 & a_2 & a_3 \\
+b_1 & b_2 & b_3 \\
+c_1 & c_2 & c_3 
+\end{bmatrix}  
+
+```
