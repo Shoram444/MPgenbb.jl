@@ -97,11 +97,8 @@ end
 
 
 ```math
-
- \begin{bmatrix}
-a_1 & a_2 & a_3 \\
-b_1 & b_2 & b_3 \\
-c_1 & c_2 & c_3 
-\end{bmatrix}  
-
+\begin{align}
+\frac{\partial u}{\partial t} &= 1 + u^2v - 4.4u + \alpha(\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2}) + f(x, y, t)\\
+\frac{\partial v}{\partial t} &= 3.4u - u^2v + \alpha(\frac{\partial^2 v}{\partial x^2} + \frac{\partial^2 v}{\partial y^2})
+\end{align}
 ```
