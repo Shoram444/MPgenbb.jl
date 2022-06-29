@@ -21,11 +21,13 @@ export get_particle_string,
 
        
 include("SamplingFuncs.jl")
-export sample_phi,           # returns ϕ azimuthal angle uniformly
-       sample_theta,         # returns θ polar angle uniformly
-       sample_energies,      # returns !!tuple!! of electron kintetic energies T1, T2
-       sample_theta_dif,     # returns θdif as the angle between the 2 electrons (based on 1 - cos(θ) angular distribution)
-       solve_quadratic       # returns x1, x2 of a quadratic equation 
+export sample_phi,              # returns ϕ azimuthal angle uniformly
+       sample_theta,            # returns θ polar angle uniformly
+       sample_energies,         # returns !!tuple!! of electron kintetic energies T1, T2
+       sample_theta_dif,        # returns θdif as the angle between the 2 electrons (based on 1 - cos(θ) angular distribution)
+       solve_quadratic,         # returns x1, x2 of a quadratic equation 
+       sample_energies_uniform, # returns tuple of electron kinetic energies T1, T2 given by uniform distribution
+       sample_theta_dif_uniform
 
 
 end # module MPgenbb

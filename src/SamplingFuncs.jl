@@ -52,6 +52,11 @@ function sample_theta_dif()
 end
 
 
+function sample_theta_dif_uniform()
+    return rand(Uniform(0, π))
+end
+
+
 
 """
 #### function ```sample_energies(df::DataFrame, thickness = 0.001)```
@@ -97,6 +102,15 @@ function sample_energies(df::DataFrame, thickness = 0.001)
     end
     
 end
+
+function sample_energies_uniform(_max)
+    T  = (rand(Uniform(0,_max)), rand(Uniform(0,_max))) 
+    while( sum(T) >=  _max)
+        T  = (rand(Uniform(0,_max)), rand(Uniform(0,_max))) 
+    end
+    return T
+end
+
 
 function solve_quadratic(a, b, c)
     d  = sqrt(b^2 - 4*a*c)
