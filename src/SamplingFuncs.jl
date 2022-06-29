@@ -51,6 +51,10 @@ function sample_theta_dif()
     return acos(cosθdif)
 end
 
+function sample_theta_dif_uniform()
+    return rand(Uniform(0, π))
+end
+
 
 
 """
@@ -97,6 +101,15 @@ function sample_energies(df::DataFrame, thickness = 0.001)
     end
     
 end
+
+function sample_energies_uniform(_max)
+    T_i  = (rand(Uniform(0,_max)), rand(Uniform(0,_max))) 
+    while( sum(T_i) >=  _max)
+        T_i  = (rand(Uniform(0,_max)), rand(Uniform(0,_max))) 
+    end
+    return T_i
+end
+
 
 function solve_quadratic(a, b, c)
     d  = sqrt(b^2 - 4*a*c)

@@ -92,6 +92,14 @@ function get_first_vector(T::Real, MASS::Real)
     return [pMag, px, py, pz, θ, ϕ]
 end
 
+function get_first_vector(T::Real, MASS::Real, ϕ::Real, θ::Real )
+    pMag = get_pMag(T, MASS)
+    px = get_px(pMag, ϕ, θ)
+    py = get_py(pMag, ϕ, θ)
+    pz = get_pz(pMag, θ)
+    return [pMag, px, py, pz, θ, ϕ]
+end
+
 
 """
 ```get_pPrime(T::Real, MASS::Real)```
