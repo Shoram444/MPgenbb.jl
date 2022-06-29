@@ -104,11 +104,11 @@ function sample_energies(df::DataFrame, thickness = 0.001)
 end
 
 function sample_energies_uniform(_max)
-    T  = (rand(Uniform(0,_max)), rand(Uniform(0,_max))) 
-    while( sum(T) >=  _max)
-        T  = (rand(Uniform(0,_max)), rand(Uniform(0,_max))) 
+    T1, T2  = rand(Uniform(0,_max)), rand(Uniform(0,_max))
+    while( T1+T2 >=  _max)
+        T1, T2  = rand(Uniform(0,_max)), rand(Uniform(0,_max))
     end
-    return T
+    return T1, T2
 end
 
 
