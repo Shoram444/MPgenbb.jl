@@ -51,6 +51,7 @@ function sample_theta_dif()
     return acos(cosθdif)
 end
 
+
 function sample_theta_dif_uniform()
     return rand(Uniform(0, π))
 end
