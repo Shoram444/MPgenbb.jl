@@ -240,3 +240,29 @@ function get_second_vector(T::Real, MASS::Real, p1::Vector{<:Real},  θdif::Real
     
     return [ p2Mag, p2[1], p2[2], p2[3], θ2, ϕ2 ]
 end
+
+
+"""
+    energy_to_momentum(px::Real, py::Real, pz::Real, MASS::Real)
+    energy_to_momentum(pMag::Real, MASS::Real)
+
+Description of energy_to_momentum
+---------------------------------
+Computes energy from momentum as:
+``` E = √(pMag² + MASS²) - MASS ```.
+
+Input arguments are:
++ px        : momentum x-component
++ py        : momentum y-component
++ pz        : momentum z-component
++ pMag      : momentum magnitude
++ MASS      : particle mass in [MeV/c²]
+"""
+function energy_to_momentum(px::Real, py::Real, pz::Real, MASS::Real)
+    pMag = sqrt( px^2 + py^2 + pz^2 )
+	return sqrt(pMag² + MASS²) - MASS
+end
+function energy_to_momentum(pMag::Real, MASS::Real)
+	return sqrt(pMag² + MASS²) - MASS
+end
+

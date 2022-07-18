@@ -11,8 +11,8 @@ export  get_pMag,            # returns the magnitude of the momentum vector calc
         get_py,              # y-component of momentum vector
         get_pz,              # z-component of momentum vector
         get_first_vector,    # returns the momentum vector of the first electron (independent, direction generated uniformaly)
-        get_second_vector    # returns the momentum vector of the second electron (dependent on first, direction generated based on θdif distribuition)
-
+        get_second_vector,   # returns the momentum vector of the second electron (dependent on first, direction generated based on θdif distribuition)
+        energy_to_momentum   # returns the calculated kinetic energy from momentum
 
 include("StringFuncs.jl")
 export get_particle_string,  
