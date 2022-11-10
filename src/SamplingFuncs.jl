@@ -64,9 +64,9 @@ function sample_theta_dif(_k::Real)
     θ = solve_quadratic(a,b,c)
     
     if( -1.0 <= θ[1] <= 1.0 )
-        return θ[1]
+        return acos(θ[1])
     elseif ( -1.0 <= θ[2] <= 1.0 )
-        return θ[2]
+        return acos(θ[2])
     else
         @show "soulution is outside of range u ∈ (-1.0, 1.0)"
     end
