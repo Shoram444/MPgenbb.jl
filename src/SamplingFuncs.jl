@@ -35,20 +35,42 @@ end
 
 Description of sample_theta_dif
 ------------------------------
-Returns θdif in radians distrtibuted according to pdf = 0.5 - 0.5x (where x = cos(θdif)). θdif is the angle between the two electrons.
+Returns θdif in radians distrtibuted according to pdf = 0.5 - 0.5*k*x (where x = cos(θdif)). θdif is the angle between the two electrons.
 
 Sampling equation is:
     + θdif (the angle between the two electrons) is sampled from pdf = 0.5 - 0.5x. This pdf represents the 1 - cos(θ) angular distribution. 
         It is sampled through inverse CDF method. Integrating pdf and finding the inverse function we get ``` x = 1 - 2\\sqrt{1 - \\gamma}```
     + returned angle is the acos(x)
 
+If no k is specified, it is assumed to be k = -1.0. 
 """
 function sample_theta_dif()
-    a = 1. 
-    b = -2.
-    c = -3 + 4*rand(Uniform())
+    a = _k 
+    b = 2.
+    c = 2-_k -4*rand(Uniform())
     cosθdif = solve_quadratic(a,b,c)[1]
     return acos(cosθdif)
+end
+
+function sample_theta_dif(_k::Real)
+    
+    if (_k == 0.0)
+        return 0.5
+    end
+    
+    a = _k/4 
+    b = 1/2
+    c = 1/2 - _k/4 - rand(Uniform())
+    θ = solve_quadratic(a,b,c)
+    
+    if( -1.0 <= θ[1] <= 1.0 )
+        return θ[1]
+    elseif ( -1.0 <= θ[2] <= 1.0 )
+        return θ[2]
+    else
+        @show "soulution is outside of range u ∈ (-1.0, 1.0)"
+    end
+    return -100.0
 end
 
 
