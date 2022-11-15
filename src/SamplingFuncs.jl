@@ -26,7 +26,7 @@ Sampling equation is:
 
 """
 function sample_phi()
-    return 2*π*rand(Uniform()) ## azimuthal angle in radians
+    return 2 * π * rand(Uniform()) ## azimuthal angle in radians
 end
 
 
@@ -45,10 +45,12 @@ Sampling equation is:
 If no k is specified, it is assumed to be k = -1.0. 
 """
 function sample_theta_dif()
+
     a = _k 
     b = 2.
     c = 2-_k -4*rand(Uniform())
     cosθdif = solve_quadratic(a,b,c)[1]
+
     return acos(cosθdif)
 end
 
@@ -99,43 +101,43 @@ E1 is sampled as a random uniform number between (row of E1, next row).
 It takes roughly 100s to sample 1e5 energies. 
 
 """
-function sample_energies(df::DataFrame, thickness = 0.001)
+function sample_energies(df::DataFrame, thickness=0.001)
     gamma = rand(Uniform(0.0, maximum(df.cdf))) # random uniform number from 0 to maximum of cdf column (it is not exactly 1.0 due to discrete numbers used in PC)
-    
-    r_id = findfirst(x -> x .>= gamma,df.cdf)
-        
-    r_id > 1 ? Pᵢ₋₁ = df[r_id-1, 8] : Pᵢ₋₁ = 0 
-    
-    df_Pᵢ= df[r_id, :]    
-    
-    a = 0.5* df_Pᵢ.a * thickness
+
+    r_id = findfirst(x -> x .>= gamma, df.cdf)
+
+    r_id > 1 ? Pᵢ₋₁ = df[r_id-1, 8] : Pᵢ₋₁ = 0
+
+    df_Pᵢ = df[r_id, :]
+
+    a = 0.5 * df_Pᵢ.a * thickness
     b = df_Pᵢ.b * thickness
-    c = Pᵢ₋₁ - gamma - a*df_Pᵢ.minE^2 - b*df_Pᵢ.minE
-    
+    c = Pᵢ₋₁ - gamma - a * df_Pᵢ.minE^2 - b * df_Pᵢ.minE
+
     x1, x2 = solve_quadratic(a, b, c)
-    
+
     if (df_Pᵢ.minE < x1) && (df_Pᵢ.maxE > x1)
-        return rand(Uniform(df_Pᵢ.E1, df_Pᵢ.E1+thickness)), x1  #E1 is sampled as uniform number between steps, 
-                                                                #E2 is sampled by CDF
+        return rand(Uniform(df_Pᵢ.E1, df_Pᵢ.E1 + thickness)), x1  #E1 is sampled as uniform number between steps, 
+    #E2 is sampled by CDF
     elseif (df_Pᵢ.minE < x2) && (df_Pᵢ.maxE > x2)
-        return rand(Uniform(df_Pᵢ.E1, df_Pᵢ.E1+thickness)), x2 
+        return rand(Uniform(df_Pᵢ.E1, df_Pᵢ.E1 + thickness)), x2
     else
         sample_energies(df)
     end
-    
+
 end
 
 function sample_energies_uniform(_max)
-    T  = (rand(Uniform(0,_max)), rand(Uniform(0,_max))) 
-    while( sum(T) >=  _max)
-        T  = (rand(Uniform(0,_max)), rand(Uniform(0,_max))) 
+    T1, T2 = rand(Uniform(0, _max)), rand(Uniform(0, _max))
+    while (T1 + T2 >= _max)
+        T1, T2 = rand(Uniform(0, _max)), rand(Uniform(0, _max))
     end
-    return T
+    return T1, T2
 end
 
 
 function solve_quadratic(a, b, c)
-    d  = sqrt(b^2 - 4*a*c)
-    return (-b - d) / (2*a), (-b + d) / (2*a)
+    d = sqrt(b^2 - 4 * a * c)
+    return (-b - d) / (2 * a), (-b + d) / (2 * a)
 end
 
