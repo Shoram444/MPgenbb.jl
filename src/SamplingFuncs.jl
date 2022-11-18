@@ -57,7 +57,7 @@ end
 function sample_theta_dif(_k::Real)
     
     if (_k == 0.0)
-        return 0.5
+        return sample_theta_dif_uniform()
     end
     
     a = _k/4 
